@@ -20,8 +20,16 @@ class TldrawCardTest extends LitElement  {
     return html`
       <ha-card .header=${this.config.name}>
         <div>Endlich Funktoniert der Test</div>
+        <div style="position: fixed; inset: 0;">
+          <Tldraw class="class-test" @mount=${(e) => this._onMount(e)} />
+        </div>
       </ha-card>
     `;
+  }
+
+  _onMount(e) {
+    const editor = e.detail.editor;
+    editor.createShapes([{ id: 'shape:box1', type: 'text', x: 100, y: 100, props: { text: 'ok' } }]);
   }
 
   static get styles() {
