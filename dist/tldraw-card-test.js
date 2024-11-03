@@ -4,21 +4,10 @@ import {
   css
 } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
 
-window.customCards = window.customCards || [];
-window.customCards.push({
-  type: 'tldraw-card-test',
-  name: 'tldraw Card-test',
-  description: 'A template custom card for you to create something awesome',
-});
-
-
-class TldrawCard extends LitElement  {
+class TldrawCardTest extends LitElement  {
   setConfig(config) {
     if (!config) {
       console.log('Invalid configuration');
-    }
-    if (config.test_gui) {
-      getLovelace().setEditMode(true);
     }
     this.config = { name: 'tldraw', ...config };
   }
@@ -31,16 +20,8 @@ class TldrawCard extends LitElement  {
     return html`
       <ha-card .header=${this.config.name}>
         <div>Endlich Funktoniert der Test</div>
-        <div style="position: fixed; inset: 0;">
-          <Tldraw class="class-test" @mount=${(e) => this._onMount(e)} />
-        </div>
       </ha-card>
     `;
-  }
-
-  _onMount(e) {
-    const editor = e.detail.editor;
-    editor.createShapes([{ id: 'shape:box1', type: 'text', x: 100, y: 100, props: { text: 'ok' } }]);
   }
 
   static get styles() {
@@ -69,4 +50,11 @@ class TldrawCard extends LitElement  {
   }
 }
 
-customElements.define('tldraw-card-test', TldrawCard);
+customElements.define('tldraw-card-test', TldrawCardTest);
+
+window.customCards = window.customCards || [];
+window.customCards.push({
+  type: 'tldraw-card-test',
+  name: 'tldraw Card-test',
+  description: 'A template custom card for you to create something awesome',
+});
